@@ -13,15 +13,19 @@ public class Book implements Serializable {
     private String author;
     private String publisher;
     private String category;
+    @Column(nullable = false, updatable = false)
+    private String bookCode;
+
 
     public Book() {
     }
 
-    public Book(String bookName, String author, String publisher, String category) {
+    public Book(String bookName, String author, String publisher, String category, String bookCode) {
         this.bookName = bookName;
         this.author = author;
         this.publisher = publisher;
         this.category = category;
+        this.bookCode = bookCode;
     }
 
     public Long getId() {
@@ -62,6 +66,15 @@ public class Book implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+
+    public String getBookCode() {
+        return bookCode;
+    }
+
+    public void setBookCode(String bookCode) {
+        this.bookCode = bookCode;
     }
 
     @Override

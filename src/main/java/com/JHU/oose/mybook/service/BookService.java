@@ -5,10 +5,13 @@ import com.JHU.oose.mybook.model.Book;
 import com.JHU.oose.mybook.repo.BookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
+@Transactional
 public class BookService {
     private final BookRepo bookRepo;
 
@@ -18,6 +21,7 @@ public class BookService {
     }
 
     public Book addBook(Book book){
+        book.setBookCode(UUID.randomUUID().toString());
         return bookRepo.save(book);
     }
 
@@ -25,8 +29,8 @@ public class BookService {
         return bookRepo.findAll();
     }
 
-    public Book upDateBook(Book book){
-        return bookRepo.save(book);
+    public void updateBook(Book book){
+        bookRepo.save(book);
     }
 
     public Book findBookById(Long id){
